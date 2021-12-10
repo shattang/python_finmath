@@ -27,10 +27,11 @@ def call_price(S, K, r, sigma, T):
 def call_delta(S, K, r, sigma, T):
     return norm_cdf(d1(S, K, r, sigma, T))
 
-
 def gamma(S, K, r, sigma, T):
     return norm_pdf(d1(S, K, r, sigma, T))/(S*sigma*np.sqrt(T))
 
+def speed(S, K, r, sigma, T):
+    return - (gamma(S, K, r, sigma, T) / S) * (d1(S, K, r, sigma, T) / (sigma * np.sqrt(T)) + 1)
 
 def vega(S, K, r, sigma, T):
     return S*norm_pdf(d1(S, K, r, sigma, T))*np.sqrt(T)
